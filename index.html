@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>POO 01</title>
+	<meta charset="utf-8">
+	<script type="text/javascript" src="pooFirst.js"></script>
+</head>
+<body>
+	<p>Dans cette promo il y a <span id='ratioFemme'></span>% de femme.</p>
+	<p><span id='youngestGenreTexte'>Le plus jeune apprenant</span>, <span id='youngestName'></span>, a <span id='youngestAge'></span>.</p>
+	<p><span id='oldestGenreTexte'>L'apprenant le plus expérimenté</span>, <span id='oldestName'></span>, a <span id='oldestAge'></span>.</p>
+	<p>La moyenne d'âge de la promo est de <span id='averageAge'></span> ans.</p>
+	<script type="text/javascript">
+		window.onload = function() {
+			var promo = new Promotion(24);
+			document.getElementById('ratioFemme').innerHTML = (promo.ratioHF() * 100).toFixed(2);
+			var youngest = promo.youngest();
+			if(youngest.gender == genderType.F) {
+				document.getElementById('youngestGenreTexte').innerHTML = 'La plus jeune apprenante';
+			}
+			document.getElementById('youngestName').innerHTML = youngest.firstName + ' ' + youngest.lastName;
+			document.getElementById('youngestAge').innerHTML = youngest.getAge();
+			var oldest = promo.oldest();
+			if(oldest.gender == genderType.F) {
+				document.getElementById('oldestGenreTexte').innerHTML = "L'apprenante la plus expérimentée";
+			}
+			document.getElementById('oldestName').innerHTML = oldest.firstName + ' ' + oldest.lastName;
+			document.getElementById('oldestAge').innerHTML = oldest.getAge();
+			document.getElementById('averageAge').innerHTML = promo.averageAge().toFixed(2);
+		}
+	</script>
+</body>
+</html>
